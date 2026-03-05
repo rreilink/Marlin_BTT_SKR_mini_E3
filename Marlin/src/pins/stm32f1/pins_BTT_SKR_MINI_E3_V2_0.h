@@ -91,7 +91,7 @@
   #define X_HARDWARE_SERIAL  MSerial4
   #define Y_HARDWARE_SERIAL  MSerial4
   #define Z_HARDWARE_SERIAL  MSerial4
-  #define E0_HARDWARE_SERIAL MSerial4
+  #define I_HARDWARE_SERIAL MSerial4
 
   // Default TMC slave addresses
   #ifndef X_SLAVE_ADDRESS
@@ -103,13 +103,13 @@
   #ifndef Z_SLAVE_ADDRESS
     #define Z_SLAVE_ADDRESS                    1
   #endif
-  #ifndef E0_SLAVE_ADDRESS
-    #define E0_SLAVE_ADDRESS                   3
+  #ifndef I_SLAVE_ADDRESS
+    #define I_SLAVE_ADDRESS                   3
   #endif
   static_assert(X_SLAVE_ADDRESS == 0, "X_SLAVE_ADDRESS must be 0 for BOARD_SKR_MINI_E3_V2_0.");
   static_assert(Y_SLAVE_ADDRESS == 2, "Y_SLAVE_ADDRESS must be 2 for BOARD_SKR_MINI_E3_V2_0.");
   static_assert(Z_SLAVE_ADDRESS == 1, "Z_SLAVE_ADDRESS must be 1 for BOARD_SKR_MINI_E3_V2_0.");
-  static_assert(E0_SLAVE_ADDRESS == 3, "E0_SLAVE_ADDRESS must be 3 for BOARD_SKR_MINI_E3_V2_0.");
+  static_assert(I_SLAVE_ADDRESS == 3, "I_SLAVE_ADDRESS must be 3 for BOARD_SKR_MINI_E3_V2_0.");
 #endif
 
 // Pins for documentation and sanity checks only.

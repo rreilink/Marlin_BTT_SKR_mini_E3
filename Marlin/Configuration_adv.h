@@ -881,13 +881,13 @@
 
 //#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (linear=mm, rotational=°) Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM      { 5, 5, 2 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_MM      { 2, 2, 2, 2 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
+#define HOMING_BUMP_DIVISOR { 2, 2, 2, 2 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 //#define XY_COUNTERPART_BACKOFF_MM 0         // (mm) Backoff X after homing Y, and vice-versa
 
-#define QUICK_HOME                            // If G28 contains XY do a diagonal move first
+//#define QUICK_HOME                            // If G28 contains XY do a diagonal move first
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
 //#define HOME_Z_FIRST                        // Home Z first. Requires a real endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
@@ -1123,7 +1123,7 @@
  * Enable DISABLE_IDLE_* to shut down axis steppers after an idle period.
  * The default timeout duration can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_TIMEOUT_SEC 120
+#define DEFAULT_STEPPER_TIMEOUT_SEC 0
 #define DISABLE_IDLE_X
 #define DISABLE_IDLE_Y
 #define DISABLE_IDLE_Z    // Disable if the nozzle could fall onto your printed part!
@@ -2650,7 +2650,7 @@
  *
  * Enable PARK_HEAD_ON_PAUSE to add the G-code M125 Pause and Park.
  */
-#define ADVANCED_PAUSE_FEATURE
+//#define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
@@ -2814,7 +2814,7 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(I)
-    #define I_CURRENT      800
+    #define I_CURRENT      100
     #define I_CURRENT_HOME I_CURRENT
     #define I_MICROSTEPS    16
     #define I_RSENSE         0.11
@@ -2998,9 +2998,9 @@
    * Set *_SERIAL_TX_PIN and *_SERIAL_RX_PIN to match for all drivers
    * on the same serial port, either here or in your board's pins file.
    */
-  //#define  X_SLAVE_ADDRESS 0
-  //#define  Y_SLAVE_ADDRESS 0
-  //#define  Z_SLAVE_ADDRESS 0
+  #define  X_SLAVE_ADDRESS 0
+  #define  Y_SLAVE_ADDRESS 2
+  #define  Z_SLAVE_ADDRESS 1
   //#define X2_SLAVE_ADDRESS 0
   //#define Y2_SLAVE_ADDRESS 0
   //#define Z2_SLAVE_ADDRESS 0
@@ -3009,7 +3009,7 @@
   //#define  I_SLAVE_ADDRESS 0
   //#define  J_SLAVE_ADDRESS 0
   //#define  K_SLAVE_ADDRESS 0
-  //#define  U_SLAVE_ADDRESS 0
+  #define  U_SLAVE_ADDRESS 3
   //#define  V_SLAVE_ADDRESS 0
   //#define  W_SLAVE_ADDRESS 0
   //#define E0_SLAVE_ADDRESS 0
@@ -3215,7 +3215,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continuous reporting.
    */
-  //#define TMC_DEBUG
+  #define TMC_DEBUG
 
   /**
    * You can set your own advanced settings by filling in predefined functions.

@@ -49,6 +49,7 @@
 #define X_STOP_PIN                          PC0   // X-STOP
 #define Y_STOP_PIN                          PC1   // Y-STOP
 #define Z_STOP_PIN                          PC2   // Z-STOP
+#define I_STOP_PIN                          PC15  // E0-STOP
 
 //
 // Z Probe must be this pin
@@ -91,9 +92,9 @@
 #define Z_STEP_PIN                          PB0
 #define Z_DIR_PIN                           PC5
 
-#define E0_ENABLE_PIN                       PD2
-#define E0_STEP_PIN                         PB3
-#define E0_DIR_PIN                          PB4
+#define I_ENABLE_PIN                       PD2
+#define I_STEP_PIN                         PB3
+#define I_DIR_PIN                          PB4
 
 //
 // Temperature Sensors

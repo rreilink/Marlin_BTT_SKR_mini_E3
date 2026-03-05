@@ -171,13 +171,13 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-//#define I_DRIVER_TYPE  A4988
+#define I_DRIVER_TYPE  TMC2209
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
 //#define U_DRIVER_TYPE  A4988
 //#define V_DRIVER_TYPE  A4988
 //#define W_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TMC2209
+//#define E0_DRIVER_TYPE TMC2209
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -204,8 +204,8 @@
  * Regardless of these settings the axes are internally named I, J, K, U, V, W.
  */
 #ifdef I_DRIVER_TYPE
-  #define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
-  #define AXIS4_ROTATES
+  #define AXIS4_NAME 'U' // :['A', 'B', 'C', 'U', 'V', 'W']
+//  #define AXIS4_ROTATES
 #endif
 #ifdef J_DRIVER_TYPE
   #define AXIS5_NAME 'B' // :['B', 'C', 'U', 'V', 'W']
@@ -232,7 +232,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+#define EXTRUDERS 0
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -892,7 +892,7 @@
 // Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
 // either in the usual order or reversed
 //#define COREXY
-//#define COREXZ
+#define COREXZ
 //#define COREYZ
 //#define COREYX
 //#define COREZX
@@ -1063,8 +1063,8 @@
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
-#define USE_ZMIN_PLUG
-//#define USE_IMIN_PLUG
+//#define USE_ZMIN_PLUG
+#define USE_IMIN_PLUG
 //#define USE_JMIN_PLUG
 //#define USE_KMIN_PLUG
 //#define USE_UMIN_PLUG
@@ -1072,7 +1072,7 @@
 //#define USE_WMIN_PLUG
 //#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
-//#define USE_ZMAX_PLUG
+#define USE_ZMAX_PLUG
 //#define USE_IMAX_PLUG
 //#define USE_JMAX_PLUG
 //#define USE_KMAX_PLUG
@@ -1131,10 +1131,10 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+#define I_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define K_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define U_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -1142,7 +1142,7 @@
 #define W_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Z_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define I_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define J_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define K_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -1204,11 +1204,11 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 500, 9 }
+#define DEFAULT_MAX_FEEDRATE          { 800, 800, 800, 9 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10, 50 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 800, 800, 800, 50 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1217,7 +1217,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 500, 500, 500, 40 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 3000, 40 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1232,9 +1232,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION           500    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION           3000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION   40    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION    500    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION    3000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1641,7 +1641,7 @@
 #define Y_ENABLE_ON 0
 #define Z_ENABLE_ON 0
 #define E_ENABLE_ON 0 // For all extruders
-//#define I_ENABLE_ON 0
+#define I_ENABLE_ON 0
 //#define J_ENABLE_ON 0
 //#define K_ENABLE_ON 0
 //#define U_ENABLE_ON 0
@@ -1671,10 +1671,10 @@
 // @section motion
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
+#define INVERT_X_DIR false
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR false
-//#define INVERT_I_DIR false
+#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
 //#define INVERT_U_DIR false
@@ -1714,8 +1714,8 @@
 // :[-1,1]
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
-#define Z_HOME_DIR -1
-//#define I_HOME_DIR -1
+#define Z_HOME_DIR 1
+#define I_HOME_DIR -1
 //#define J_HOME_DIR -1
 //#define K_HOME_DIR -1
 //#define U_HOME_DIR -1
@@ -1731,12 +1731,12 @@
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
-#define Z_MIN_POS 0
+#define Z_MIN_POS -50
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 250
-//#define I_MIN_POS 0
-//#define I_MAX_POS 50
+#define Z_MAX_POS 0
+#define I_MIN_POS 0
+#define I_MAX_POS 50
 //#define J_MIN_POS 0
 //#define J_MAX_POS 50
 //#define K_MIN_POS 0
@@ -1758,7 +1758,7 @@
  */
 
 // Min software endstops constrain movement within minimum coordinate bounds
-#define MIN_SOFTWARE_ENDSTOPS
+//#define MIN_SOFTWARE_ENDSTOPS
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
@@ -1772,7 +1772,7 @@
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
-#define MAX_SOFTWARE_ENDSTOPS
+//#define MAX_SOFTWARE_ENDSTOPS
 #if ENABLED(MAX_SOFTWARE_ENDSTOPS)
   #define MAX_SOFTWARE_ENDSTOP_X
   #define MAX_SOFTWARE_ENDSTOP_Y
@@ -2131,7 +2131,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
+#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (20*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2272,7 +2272,7 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-#define NOZZLE_PARK_FEATURE
+//#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
