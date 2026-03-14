@@ -4025,6 +4025,18 @@ void Temperature::isr() {
         break;
     #endif // HAS_ADC_BUTTONS
 
+    #if HAS_ANALOG_PROBE
+      case PrepareProbe: hal.adc_start(ANALOG_PROBE_PIN); break;
+      case MeasureProbe:
+        if (hal.adc_ready()) {
+          analog_probe_value = hal.adc_value();
+        } else {
+          next_sensor_state = adc_sensor_state;
+        }
+
+        break;
+    #endif
+
     case StartupDelay: break;
 
   } // switch(adc_sensor_state)
@@ -4049,6 +4061,21 @@ void Temperature::isr() {
   // Periodically call the planner timer service routine
   planner.isr();
 }
+
+#if HAS_ANALOG_PROBE
+int16_t Temperature::analog_probe_value=0;
+int16_t Temperature::analog_probe_value_tare=0;
+
+int16_t Temperature::read_analog_probe() {
+  return this->analog_probe_value - this->analog_probe_value_tare;
+}
+
+void Temperature::tare_analog_probe() {
+  this->analog_probe_value_tare = this->analog_probe_value;
+}
+
+#endif
+
 
 #if HAS_TEMP_SENSOR
   /**

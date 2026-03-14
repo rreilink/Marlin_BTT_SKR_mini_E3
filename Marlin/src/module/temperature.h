@@ -126,6 +126,9 @@ enum ADCSensorState : char {
   #if HAS_ADC_BUTTONS
     Prepare_ADC_KEY, Measure_ADC_KEY,
   #endif
+  #if HAS_ANALOG_PROBE
+    PrepareProbe, MeasureProbe,
+  #endif
   SensorsReady, // Temperatures ready. Delay the next round of readings to let ADC pins settle.
   StartupDelay  // Startup, delay initial temp reading a tiny bit so the hardware can settle
 };
@@ -599,6 +602,12 @@ class Temperature {
     #endif
     #if HAS_TEMP_REDUNDANT
       static redundant_info_t temp_redundant;
+    #endif
+
+    #if HAS_ANALOG_PROBE
+      static int16_t analog_probe_value, analog_probe_value_tare;
+      int16_t read_analog_probe();
+      void tare_analog_probe();
     #endif
 
     #if ANY(AUTO_POWER_E_FANS, HAS_FANCHECK)

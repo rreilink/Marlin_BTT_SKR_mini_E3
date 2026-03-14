@@ -429,6 +429,8 @@ void Endstops::poll() {
 
   #if DISABLED(ENDSTOP_INTERRUPTS_FEATURE)
     update();
+  #elif HAS_ANALOG_PROBE
+    update();
   #elif ENDSTOP_NOISE_THRESHOLD
     if (endstop_poll_count) update();
   #endif
@@ -815,11 +817,14 @@ void Endstops::update() {
       #endif
     #endif
   #endif
-
   #if HAS_BED_PROBE
     // When closing the gap check the enabled probe
     if (probe_switch_activated())
-      UPDATE_ENDSTOP_BIT(Z, TERN(USES_Z_MIN_PROBE_PIN, MIN_PROBE, MIN));
+      #if HAS_ANALOG_PROBE
+        SET_BIT_TO(live_state, Z_MIN_PROBE, thermalManager.read_analog_probe()>1000); //TODO threshold adjustable
+      #else
+        UPDATE_ENDSTOP_BIT(Z, TERN(USES_Z_MIN_PROBE_PIN, MIN_PROBE, MIN));
+      #endif
   #endif
 
   #if USE_Z_MAX && !Z_SPI_SENSORLESS

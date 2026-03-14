@@ -664,7 +664,16 @@ bool Probe::probe_down_to_z(const_float_t z, const_feedRate_t fr_mm_s) {
 }
 
 #if ENABLED(PROBE_TARE)
+#if HAS_ANALOG_PROBE
+  void Probe::tare_init() {
+  }
 
+  bool Probe::tare() {
+    thermalManager.tare_analog_probe();
+    return false;
+  }
+
+#else
   /**
    * @brief Init the tare pin
    *
@@ -698,6 +707,7 @@ bool Probe::probe_down_to_z(const_float_t z, const_feedRate_t fr_mm_s) {
     endstops.hit_on_purpose();
     return false;
   }
+#endif
 #endif
 
 /**

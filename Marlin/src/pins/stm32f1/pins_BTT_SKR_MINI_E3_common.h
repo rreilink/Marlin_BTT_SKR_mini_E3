@@ -102,10 +102,12 @@
 #define TEMP_0_PIN                          PA0   // Analog Input "TH0"
 #define TEMP_BED_PIN                        PC3   // Analog Input "TB0"
 
+#define ANALOG_PROBE_PIN                    PA0 // analog input TH0
+
 //
 // Heaters / Fans
 //
-#define HEATER_0_PIN                        PC8   // "HE"
+//#define HEATER_0_PIN                        PC8   // "HE"
 #define HEATER_BED_PIN                      PC9   // "HB"
 
 #ifndef FAN0_PIN

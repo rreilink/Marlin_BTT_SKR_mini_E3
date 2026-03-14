@@ -2256,6 +2256,10 @@
   #define HAS_TEMP_REDUNDANT 1
 #endif
 
+#if PIN_EXISTS(ANALOG_PROBE)
+  #define HAS_ANALOG_PROBE 1
+#endif
+
 #if ENABLED(JOYSTICK)
   #if PIN_EXISTS(JOY_X)
     #define HAS_JOY_ADC_X 1
