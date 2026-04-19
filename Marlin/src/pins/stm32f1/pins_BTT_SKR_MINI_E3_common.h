@@ -41,15 +41,18 @@
 //
 // Servos
 //
-#define SERVO0_PIN                          PA1   // SERVOS
+//#define SERVO0_PIN                          PA1   // SERVOS
 
 //
 // Limit Switches
 //
+// I-stop (E0) and Y-stop are swapped to simplify wiring: the E0-stop connector
+// has a +5V signal
+//
 #define X_STOP_PIN                          PC0   // X-STOP
-#define Y_STOP_PIN                          PC1   // Y-STOP
+#define Y_STOP_PIN                          PC15  // E0-STOP
 #define Z_STOP_PIN                          PC2   // Z-STOP
-#define I_STOP_PIN                          PC15  // E0-STOP
+#define I_STOP_PIN                          PC1   // Y-STOP
 
 //
 // Z Probe must be this pin
@@ -67,7 +70,7 @@
 // Filament Runout Sensor
 //
 #ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN                    PC15  // E0-STOP
+  #define FIL_RUNOUT_PIN                    I_STOP_PIN   // E0-STOP
 #endif
 
 //
@@ -102,7 +105,7 @@
 #define TEMP_0_PIN                          PA0   // Analog Input "TH0"
 #define TEMP_BED_PIN                        PC3   // Analog Input "TB0"
 
-#define ANALOG_PROBE_PIN                    PA0 // analog input TH0
+#define ANALOG_PROBE_PIN                    PA1   // Probe connector 'SERVOS'
 
 //
 // Heaters / Fans
