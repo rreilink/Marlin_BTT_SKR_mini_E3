@@ -4029,7 +4029,7 @@ void Temperature::isr() {
       case PrepareProbe: hal.adc_start(ANALOG_PROBE_PIN); break;
       case MeasureProbe:
         if (hal.adc_ready()) {
-          analog_probe_value = hal.adc_value();
+          analog_probe_value += hal.adc_value() - (analog_probe_value>>6); // Low-pass filter
         } else {
           next_sensor_state = adc_sensor_state;
         }
@@ -4063,11 +4063,14 @@ void Temperature::isr() {
 }
 
 #if HAS_ANALOG_PROBE
-int16_t Temperature::analog_probe_value=0;
-int16_t Temperature::analog_probe_value_tare=0;
+int32_t Temperature::analog_probe_value=0;
+int32_t Temperature::analog_probe_value_tare=0;
 
 int16_t Temperature::read_analog_probe() {
-  return this->analog_probe_value - this->analog_probe_value_tare;
+  // >>6 to compensate for the gain of the low-pass filter
+  int16_t result = (this->analog_probe_value - this->analog_probe_value_tare)>>6;
+  //SERIAL_ECHOLN(result);
+  return result;
 }
 
 void Temperature::tare_analog_probe() {

@@ -304,6 +304,12 @@ public:
     static void set_probing_paused(const bool p);
   #endif
 
+  #if HAS_ANALOG_PROBE
+    static int32_t _sensitivity;
+    static void set_sensitivity(const int32_t sensitivity) { _sensitivity = sensitivity; }
+    static int32_t get_sensitivity() { return _sensitivity; }
+  #endif
+
   #if ENABLED(PROBE_TARE)
     static void tare_init();
     static bool tare();

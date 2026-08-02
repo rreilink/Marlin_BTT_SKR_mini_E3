@@ -384,7 +384,7 @@ void MarlinHAL::adc_start(const pin_t pin) {
     _TCASE(HAS_ANALOG_PROBE, ANALOG_PROBE_PIN, ANALOG_PROBE)
   }
   adc_result = (adc_results[(int)pin_index] & 0xFFF) >> (12 - HAL_ADC_RESOLUTION); // shift out unused bits
-  /*if (pin == 0) {
+/*  if (pin == ANALOG_PROBE_PIN) {
     SERIAL_ECHOLN(adc_result);
   }*/
 }

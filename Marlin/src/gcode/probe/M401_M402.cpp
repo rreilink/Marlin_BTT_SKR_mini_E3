@@ -52,6 +52,7 @@ void GcodeSuite::M401() {
   }
   else {
     probe.deploy();
+    TERN_(HAS_ANALOG_PROBE, probe.set_sensitivity(parser.ushortval('T', ANALOG_PROBE_DEFAULT_SENSITIVITY)));
     TERN_(PROBE_TARE, probe.tare());
     report_current_position();
   }

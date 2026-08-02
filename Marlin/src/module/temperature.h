@@ -605,7 +605,7 @@ class Temperature {
     #endif
 
     #if HAS_ANALOG_PROBE
-      static int16_t analog_probe_value, analog_probe_value_tare;
+      static int32_t analog_probe_value, analog_probe_value_tare;
       int16_t read_analog_probe();
       void tare_analog_probe();
     #endif

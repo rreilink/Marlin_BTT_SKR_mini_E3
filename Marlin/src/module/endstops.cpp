@@ -821,7 +821,7 @@ void Endstops::update() {
     // When closing the gap check the enabled probe
     if (probe_switch_activated())
       #if HAS_ANALOG_PROBE
-        SET_BIT_TO(live_state, Z_MIN_PROBE, thermalManager.read_analog_probe()>500); //TODO threshold adjustable
+        SET_BIT_TO(live_state, Z_MIN_PROBE, thermalManager.read_analog_probe()>probe.get_sensitivity());
       #else
         UPDATE_ENDSTOP_BIT(Z, TERN(USES_Z_MIN_PROBE_PIN, MIN_PROBE, MIN));
       #endif

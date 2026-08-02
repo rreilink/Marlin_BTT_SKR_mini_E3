@@ -663,6 +663,11 @@ bool Probe::probe_down_to_z(const_float_t z, const_feedRate_t fr_mm_s) {
   return !probe_triggered;
 }
 
+
+#if HAS_ANALOG_PROBE
+int32_t Probe::_sensitivity = ANALOG_PROBE_DEFAULT_SENSITIVITY;
+#endif
+
 #if ENABLED(PROBE_TARE)
 #if HAS_ANALOG_PROBE
   void Probe::tare_init() {
@@ -672,6 +677,7 @@ bool Probe::probe_down_to_z(const_float_t z, const_feedRate_t fr_mm_s) {
     thermalManager.tare_analog_probe();
     return false;
   }
+
 
 #else
   /**

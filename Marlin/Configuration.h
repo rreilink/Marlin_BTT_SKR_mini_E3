@@ -1308,6 +1308,9 @@
 // Force the use of the probe for Z-axis homing
 //#define USE_PROBE_FOR_Z_HOMING
 
+// Default sensitivity for analog probe. Units: ADC counts. Override using M401 T<value>
+#define ANALOG_PROBE_DEFAULT_SENSITIVITY 500
+
 /**
  * Z_MIN_PROBE_PIN
  *
